@@ -1,6 +1,6 @@
 # jira-weekly-report
 
-jira-weekly-report is a process to generate the weekly report from jira.
+>jira-weekly-report is a process to generate the weekly report from jira.
 
 ## Install
 
@@ -8,7 +8,7 @@ jira-weekly-report is a process to generate the weekly report from jira.
 $ npm i jira-weekly-report -g
 ```
 
-you can run `jwr -V` to see if install successfully!
+>you can run `jwr -V` to see if install successfully!
 
 ## Usage
 
