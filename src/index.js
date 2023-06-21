@@ -1,14 +1,12 @@
 const { Version2Client } = require('jira.js');
 const fs = require('fs');
 const dayjs = require('dayjs');
-const os = require('os');
-const { getConfig } = require('./utils');
+const { getConfig, getReportFilePath } = require('./utils');
 const chalk = require('chalk');
 
 module.exports = function () {
 
   const { email, token, host = 'https://jira.shopee.io', name } = getConfig();
-  const desktopDir = `${os.homedir()}/Desktop`;
    
   const client = new Version2Client({
     host,
@@ -76,9 +74,12 @@ module.exports = function () {
       ${thisWeek}
     `;
   
-    fs.writeFile(`${desktopDir}/report.html`, html, err => {
+    fs.writeFile(getReportFilePath(), html, err => {
       if (err) throw err;
       console.log(chalk.green('The report file generate successfully!'));
+      import('open').then(module => {
+        module.default(getReportFilePath());
+      })
     });
   }
   

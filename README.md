@@ -32,8 +32,8 @@ $ jwr config -n <your name>
 
 After above steps, you can run **`jwr config`** to see your config.
 
-If config correct, just run **`jwr`** to generate the report.
+If config correct, just run **`jwr`** to generate the report file in your Desktop.
 
-Then you can see a report.html file in your Desktop.
+Then the program will auto open the report file in your default browser.
 
-Open it you can see the report!
+Now you can see the report!

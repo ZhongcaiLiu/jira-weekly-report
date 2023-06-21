@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 const { program } = require('commander');
-const { version } = require('../package.json');
 const fs = require('fs');
-const { getConfig } = require('../src/utils');
+const { pkg, getConfig, getConfigPath } = require('../src/utils');
 const chalk = require('chalk');
 
-program.version(version);
-program.version(version, '-v, --vers', 'output the current version');
+program.version(pkg.version);
+program.version(pkg.version, '-v, --vers', 'output the current version');
 
 program
   .action(() => {
@@ -29,7 +28,7 @@ program.command('config')
       console.log(config);
       return;
     }
-    fs.writeFile(`${process.cwd()}/src/config.json`, JSON.stringify({ ...config, ...cmd }), err => {
+    fs.writeFile(getConfigPath(), JSON.stringify({ ...config, ...cmd }), err => {
       if (err) throw err;
       console.log(chalk.green('set config success!'))
     })

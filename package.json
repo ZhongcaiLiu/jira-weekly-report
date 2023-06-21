@@ -1,7 +1,7 @@
 {
 	"name": "jira-weekly-report",
-	"version": "0.0.5",
-	"description": "A nodeJs process to gennerate the weekly report from jira",
+	"version": "1.0.0",
+	"description": "A nodeJs program to gennerate the weekly report from jira",
 	"author": "zhongcai.liu",
 	"bin": {
 		"jwr": "./bin/index.js"
@@ -10,7 +10,8 @@
 		"chalk": "4.1.2",
 		"commander": "^11.0.0",
 		"dayjs": "^1.11.8",
-		"jira.js": "^2.19.0"
+		"jira.js": "^2.19.0",
+		"open": "^9.1.0"
 	},
 	"license": "MIT",
 	"repository": {
