@@ -10,7 +10,7 @@ $ npm i jira-weekly-report -g
 
 you can run **`jwr -v`** to see if install successfully!
 
-## Quick Start
+## Usage
 
 1. config your jira email and [personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html) first
 
