@@ -1,12 +1,13 @@
 {
 	"name": "jira-weekly-report",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A nodeJs process to gennerate the weekly report from jira",
 	"author": "zhongcai.liu",
 	"bin": {
 		"jwr": "./bin/index.js"
 	},
 	"dependencies": {
+		"chalk": "4.1.2",
 		"commander": "^11.0.0",
 		"dayjs": "^1.11.8",
 		"jira.js": "^2.19.0"
@@ -16,5 +17,8 @@
 		"type": "git",
 		"url": "https://github.com/ZhongcaiLiu/jira-weekly-report"
 	},
-	"keywords": ["jira", "weekly report"]
+	"keywords": [
+		"jira",
+		"weekly report"
+	]
 }

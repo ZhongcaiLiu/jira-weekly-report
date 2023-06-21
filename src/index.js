@@ -2,11 +2,12 @@ const { Version2Client } = require('jira.js');
 const fs = require('fs');
 const dayjs = require('dayjs');
 const os = require('os');
+const { getConfig } = require('./utils');
+const chalk = require('chalk');
 
-module.exports = function (params) {
+module.exports = function () {
 
-  const { user, token } = params;
-  const host = 'https://jira.shopee.io';
+  const { email, token, host = 'https://jira.shopee.io', name } = getConfig();
   const desktopDir = `${os.homedir()}/Desktop`;
    
   const client = new Version2Client({
@@ -22,7 +23,7 @@ module.exports = function (params) {
   const thisWeekEndDate = () => dayjs().day(5).format('YYYY-MM-DD');
   
   async function getTaskContent (startDate, endDate) {
-    const issue = await client.issueSearch.searchForIssuesUsingJql({ jql: `issuetype = Sub-task AND "Dev Start Date" >= ${startDate} AND "Dev Start Date" <= ${endDate} AND assignee in ("${user}") ORDER BY cf[11516] ASC, assignee, due ASC` });
+    const issue = await client.issueSearch.searchForIssuesUsingJql({ jql: `issuetype = Sub-task AND "Dev Start Date" >= ${startDate} AND "Dev Start Date" <= ${endDate} AND assignee in ("${email}") ORDER BY cf[11516] ASC, assignee, due ASC` });
     const data = issue.issues?.reduce((total, cur) => {
       const key = cur.fields.parent?.key;
       const summary = cur.fields.parent?.fields.summary;
@@ -63,7 +64,7 @@ module.exports = function (params) {
     const [lastWeek, thisWeek] = await Promise.all([getTaskContent(lastWeekStartDate(), lastWeekEndDate()),
       getTaskContent(thisWeekStartDate(), thisWeekEndDate())]);
   
-    const userName = user.split('@')[0].split('.').map(u => u.replace(u[0], u[0].toUpperCase())).join(' ');
+    const userName = name || email.split('@')[0].split('.').map(u => u.replace(u[0], u[0].toUpperCase())).join(' ');
     const dateRange = `${dayjs(lastWeekStartDate()).format('YYYYMMDD')}-${dayjs(lastWeekEndDate()).format('YYYYMMDD')}`;
     const title = `${userName} Weekly Report ${dateRange}`;
     const html = `<h2>${title}</h2>
@@ -77,7 +78,7 @@ module.exports = function (params) {
   
     fs.writeFile(`${desktopDir}/report.html`, html, err => {
       if (err) throw err;
-      console.log('The report file generate successfully!');
+      console.log(chalk.green('The report file generate successfully!'));
     });
   }
   

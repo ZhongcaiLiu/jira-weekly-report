@@ -8,13 +8,31 @@ jira-weekly-report is a process to generate the weekly report from jira.
 $ npm i jira-weekly-report -g
 ```
 
-you can run `jwr -V` to see if install successfully!
+you can run `jwr -v` to see if install successfully!
 
-## Usage
+## Quick Start
+
+1. config your jira email and personnal access token first
 
 ```bash
-$ jwr -u <your email> -t <your personnal access token>
+$ jwr config -e <your email> -t <your token>
 ```
+
+2. config your jira host(if you work at shopee, can skip this step)
+
+```bash
+$ jwr config -h <your jira host>
+```
+
+3. (Optional)you can config name to change the report title name
+
+```bash
+$ jwr config -n <your name>
+```
+
+After above steps, you can run `jwr config` to see your config.
+
+If config correct, just run `jwr` to generate the report.
 
 then you can see a report.html file in your Desktop.
 
