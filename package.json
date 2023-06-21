@@ -1,6 +1,6 @@
 {
 	"name": "jira-weekly-report",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "A nodeJs process to gennerate the weekly report from jira",
 	"author": "zhongcai.liu",
 	"bin": {

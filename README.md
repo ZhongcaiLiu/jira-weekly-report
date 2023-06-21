@@ -12,7 +12,7 @@ you can run **`jwr -v`** to see if install successfully!
 
 ## Quick Start
 
-1. config your jira email and personnal access token first
+1. config your jira email and [personnal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html) first
 
 ```bash
 $ jwr config -e <your email> -t <your token>
@@ -34,6 +34,6 @@ After above steps, you can run **`jwr config`** to see your config.
 
 If config correct, just run **`jwr`** to generate the report.
 
-then you can see a report.html file in your Desktop.
+Then you can see a report.html file in your Desktop.
 
-open it you can see the report!
+Open it you can see the report!
