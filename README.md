@@ -8,7 +8,7 @@ jira-weekly-report is a program to generate the weekly report from jira.
 $ npm i jira-weekly-report -g
 ```
 
-you can run `jwr -v` to see if install successfully!
+you can run **`jwr -v`** to see if install successfully!
 
 ## Quick Start
 
