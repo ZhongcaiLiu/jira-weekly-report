@@ -12,7 +12,7 @@ you can run **`jwr -v`** to see if install successfully!
 
 ## Quick Start
 
-1. config your jira email and [personnal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html) first
+1. config your jira email and [personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html) first
 
 ```bash
 $ jwr config -e <your email> -t <your token>
