@@ -1,6 +1,6 @@
 # jira-weekly-report
 
->jira-weekly-report is a process to generate the weekly report from jira.
+jira-weekly-report is a process to generate the weekly report from jira.
 
 ## Install
 
@@ -8,7 +8,7 @@
 $ npm i jira-weekly-report -g
 ```
 
->you can run `jwr -V` to see if install successfully!
+you can run `jwr -V` to see if install successfully!
 
 ## Usage
 
@@ -16,6 +16,6 @@ $ npm i jira-weekly-report -g
 $ jwr -u <your email> -t <your personnal access token>
 ```
 
->then you can see a report.html file in your Desktop
+then you can see a report.html file in your Desktop.
 
->open it you can see the report!
+open it you can see the report!
