@@ -1,6 +1,6 @@
 # jira-weekly-report
 
-jira-weekly-report is a process to generate the weekly report from jira.
+jira-weekly-report is a program to generate the weekly report from jira.
 
 ## Install
 
@@ -30,9 +30,9 @@ $ jwr config -h <your jira host>
 $ jwr config -n <your name>
 ```
 
-After above steps, you can run `jwr config` to see your config.
+After above steps, you can run ***`jwr config`*** to see your config.
 
-If config correct, just run `jwr` to generate the report.
+If config correct, just run ***`jwr`*** to generate the report.
 
 then you can see a report.html file in your Desktop.
 
