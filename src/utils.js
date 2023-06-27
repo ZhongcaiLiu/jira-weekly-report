@@ -14,9 +14,31 @@ const getConfig = () => {
   return config;
 }
 
+const computedData = (issue) => 
+  issue.issues?.reduce((total, cur) => {
+    const key = cur.fields.parent?.key;
+    const summary = cur.fields.parent?.fields.summary;
+    const item = total.find(t => t.key === key);
+    const subTask = {
+      key: cur.key,
+      summary: cur.fields.summary
+    }
+    if (item) {
+      item.subTask.push(subTask)
+    } else {
+      total.push({
+        key,
+        summary,
+        subTask: [subTask]
+      })
+    }
+    return total;
+  }, [])
+
 module.exports = {
   pkg,
   getConfig,
   getConfigPath,
   getReportFilePath,
+  computedData,
 }

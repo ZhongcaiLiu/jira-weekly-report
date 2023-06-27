@@ -1,7 +1,7 @@
 const { Version2Client } = require('jira.js');
 const fs = require('fs');
 const dayjs = require('dayjs');
-const { getConfig, getReportFilePath } = require('./utils');
+const { getConfig, getReportFilePath, computedData } = require('./utils');
 const chalk = require('chalk');
 
 module.exports = function () {
@@ -16,32 +16,18 @@ module.exports = function () {
   });
   
   const lastWeekStartDate = () => dayjs().add(-7, 'days').day(1).format('YYYY-MM-DD');
-  const lastWeekEndDate = () => dayjs().add(-7, 'days').day(5).format('YYYY-MM-DD');
+  const lastWeekEndDate = () => dayjs().day(0).format('YYYY-MM-DD');
   const thisWeekStartDate = () => dayjs().day(1).format('YYYY-MM-DD');
-  const thisWeekEndDate = () => dayjs().day(5).format('YYYY-MM-DD');
+  const thisWeekEndDate = () => dayjs().add(7, 'days').day(0).format('YYYY-MM-DD');
+
+  const titleStartDate = () => dayjs(lastWeekStartDate()).format('YYYYMMDD');
+  const titleEndDate = () => dayjs(lastWeekEndDate()).add(-2, 'days').format('YYYYMMDD');
   
   async function getTaskContent (startDate, endDate) {
     const issue = await client.issueSearch.searchForIssuesUsingJql({ jql: `issuetype = Sub-task AND "Dev Start Date" >= ${startDate} AND "Dev Start Date" <= ${endDate} AND assignee in ("${email}") ORDER BY cf[11516] ASC, assignee, due ASC` });
-    const data = issue.issues?.reduce((total, cur) => {
-      const key = cur.fields.parent?.key;
-      const summary = cur.fields.parent?.fields.summary;
-      const item = total.find(t => t.key === key);
-      const subTask = {
-        key: cur.key,
-        summary: cur.fields.summary
-      }
-      if (item) {
-        item.subTask.push(subTask)
-      } else {
-        total.push({
-          key,
-          summary,
-          subTask: [subTask]
-        })
-      }
-      return total;
-    }, [])
-  
+    
+    const data = computedData(issue);
+
     const content = data?.map(d => (`
       <li>
         <a href="${host}/browse/${d.key}" target="_blank">[${d.key}]</a>
@@ -63,7 +49,7 @@ module.exports = function () {
       getTaskContent(thisWeekStartDate(), thisWeekEndDate())]);
   
     const userName = name || email.split('@')[0].split('.').map(u => u.replace(u[0], u[0].toUpperCase())).join(' ');
-    const dateRange = `${dayjs(lastWeekStartDate()).format('YYYYMMDD')}-${dayjs(lastWeekEndDate()).format('YYYYMMDD')}`;
+    const dateRange = `${titleStartDate()}-${titleEndDate()}`;
     const title = `${userName} Weekly Report ${dateRange}`;
     const html = `<h2>${title}</h2>
       <b>My thoughts</b>

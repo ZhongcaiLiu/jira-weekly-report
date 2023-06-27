@@ -1,6 +1,6 @@
 # jira-weekly-report
 
-jira-weekly-report is a program to generate the weekly report from jira.
+jira-weekly-report is a program for those who work at shopee to generate the weekly report from jira.
 
 ## Install
 
@@ -18,13 +18,7 @@ you can run **`jwr -v`** to see if install successfully!
 $ jwr config -e <your email> -t <your token>
 ```
 
-2. config your jira host(if you work at shopee, can skip this step)
-
-```bash
-$ jwr config -h <your jira host>
-```
-
-3. (Optional)you can config name to change the report title name
+2. you can config name to change the report title name(optional)
 
 ```bash
 $ jwr config -n <your name>
